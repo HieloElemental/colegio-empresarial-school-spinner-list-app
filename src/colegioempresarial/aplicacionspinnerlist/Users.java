@@ -10,15 +10,6 @@ package colegioempresarial.aplicacionspinnerlist;
  * @author Alejandro Gutierrez Muñoz; Maria Alejandro Escobar Castro
  * @grade 11C
  */
-public class ColegioEmpresarialAplicacionSpinnerList {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Window window = new Window();
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-    }
+public class Users {
     
 }
