@@ -22,6 +22,7 @@ public class UsersProvider {
         users.add(new User.Builder()
                 .setUserUsername("HieloElemental")
                 .setUserPassword(password)
+                .setUserIsAdmin(true)
                 .build());
     }
     

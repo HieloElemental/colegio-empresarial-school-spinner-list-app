@@ -13,10 +13,12 @@ package colegioempresarial.aplicacionspinnerlist;
 public class User {
     private String username;
     private char[] password;
+    private boolean isAdmin;
             
-    public User(String username, char[] password){
+    public User(String username, char[] password, boolean isAdmin){
         this.username = username;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
     
     public String getUserUsername(){
@@ -27,9 +29,14 @@ public class User {
         return password;
     }
     
+    public boolean isAdmin(){
+        return isAdmin;
+    }
+    
     public static class Builder {
         private String username;
         private char[] password;
+        private boolean isAdmin;
         
         public Builder setUserUsername (String username){
             this.username = username;
@@ -41,8 +48,13 @@ public class User {
             return this;
         }
         
+        public Builder setUserIsAdmin (boolean isAdmin){
+            this.isAdmin = isAdmin;
+            return this;
+        }
+        
         public User build() {
-            return new User(username, password);
+            return new User(username, password, isAdmin);
         }
     }
 }

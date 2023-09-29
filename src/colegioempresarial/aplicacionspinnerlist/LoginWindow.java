@@ -5,18 +5,22 @@
  */
 package colegioempresarial.aplicacionspinnerlist;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alejandro Gutierrez Muñoz; Maria Alejandro Escobar Castro
  * @grade 11C
  */
-public class Window extends javax.swing.JFrame {
+public class LoginWindow extends javax.swing.JFrame {
+    UsersProvider usersProvider = new UsersProvider();
+    User loggedUser;
     boolean isAdmin = false;
 
     /**
-     * Creates new form Window
+     * Creates new form UserWindow
      */
-    public Window() {
+    public LoginWindow() {
         initComponents();
     }
 
@@ -87,6 +91,11 @@ public class Window extends javax.swing.JFrame {
         passwordLabel.setText("Contraseña:");
 
         loginButton.setText("Ingresar");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +156,24 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean login(){
+        String username = usernameTextField.getText();
+        char[] password = passwordPasswordField.getPassword();
+        loggedUser = usersProvider.login(username, password);
+        if(loggedUser != null){
+            if(isAdmin){
+                if(loggedUser.isAdmin()){
+                    return true;
+                }
+            }else{
+                if(!loggedUser.isAdmin()){
+                return true;            
+                }
+            }
+        }
+        return false;
+    }
+    
     private void toggleUser (){
         isAdmin = !isAdmin;
         userIconButton.setEnabled(isAdmin);
@@ -177,6 +204,20 @@ public class Window extends javax.swing.JFrame {
         toggleUser();
     }//GEN-LAST:event_userIconButtonActionPerformed
 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        boolean isValidLogin = login();
+        if(isValidLogin){
+            UserWindow userWindow = new UserWindow();
+            userWindow.setProvider(usersProvider);
+            userWindow.setLoggedUser(loggedUser);
+            userWindow.setLocationRelativeTo(this);
+            userWindow.setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Credenciales Invalidas");
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,20 +235,21 @@ public class Window extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Window().setVisible(true);
+                new LoginWindow().setVisible(true);
             }
         });
     }

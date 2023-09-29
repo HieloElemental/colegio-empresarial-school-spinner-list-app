@@ -16,9 +16,9 @@ public class ColegioEmpresarialAplicacionSpinnerList {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Window window = new Window();
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
+        LoginWindow loginWindow = new LoginWindow();
+        loginWindow.setLocationRelativeTo(null);
+        loginWindow.setVisible(true);
     }
     
 }
