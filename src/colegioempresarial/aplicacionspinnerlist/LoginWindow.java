@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginWindow extends javax.swing.JFrame {
     UsersProvider usersProvider = new UsersProvider();
+    VehiclesProvider vehiclesProvider = new VehiclesProvider();
     User loggedUser;
     boolean isAdmin = false;
 
@@ -22,6 +23,10 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+    }
+    
+    public void setVehiclesProvider(VehiclesProvider vehiclesProvider){
+        this.vehiclesProvider = vehiclesProvider;
     }
 
     /**
@@ -208,7 +213,8 @@ public class LoginWindow extends javax.swing.JFrame {
         boolean isValidLogin = login();
         if(isValidLogin){
             UserWindow userWindow = new UserWindow();
-            userWindow.setProvider(usersProvider);
+            userWindow.setUsersProvider(usersProvider);
+            userWindow.setVehiclesProvider(vehiclesProvider);
             userWindow.setLoggedUser(loggedUser);
             userWindow.setLocationRelativeTo(this);
             userWindow.setVisible(true);

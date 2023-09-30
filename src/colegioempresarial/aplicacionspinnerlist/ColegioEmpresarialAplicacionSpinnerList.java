@@ -16,9 +16,11 @@ public class ColegioEmpresarialAplicacionSpinnerList {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        VehiclesProvider vehiclesProvider = new VehiclesProvider();
         LoginWindow loginWindow = new LoginWindow();
         loginWindow.setLocationRelativeTo(null);
         loginWindow.setVisible(true);
+        loginWindow.setVehiclesProvider(vehiclesProvider);
     }
     
 }
