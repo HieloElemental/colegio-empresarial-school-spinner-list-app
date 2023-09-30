@@ -50,17 +50,17 @@ public class UserWindow extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         listScrollPane = new javax.swing.JScrollPane();
         vehicleList = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        brandLabel = new javax.swing.JLabel();
+        brandTextField = new javax.swing.JTextField();
+        modelLabel = new javax.swing.JLabel();
+        modelTextField = new javax.swing.JTextField();
+        horsepowerLabel = new javax.swing.JLabel();
+        horsepowerSpinner = new javax.swing.JSpinner();
+        valueLabel = new javax.swing.JLabel();
+        valueSpinner = new javax.swing.JSpinner();
+        sellButton = new javax.swing.JButton();
+        goToUsersButton = new javax.swing.JButton();
+        restoreDataButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -74,45 +74,41 @@ public class UserWindow extends javax.swing.JFrame {
         titleLabel.setText("Bienvenido, ");
 
         vehicleList.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        vehicleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        vehicleList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                vehicleListValueChanged(evt);
+            }
         });
         listScrollPane.setViewportView(vehicleList);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Marca:");
+        brandLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        brandLabel.setText("Marca:");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Modelo:");
+        modelLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        modelLabel.setText("Modelo:");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setText("<html><p>Caballos de fuerza:</p></html>");
+        horsepowerLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        horsepowerLabel.setText("<html><p>Caballos de fuerza:</p></html>");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Precio:");
+        horsepowerSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        horsepowerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
-        jTextField1.setText("jTextField1");
+        valueLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        valueLabel.setText("Precio:");
 
-        jTextField2.setText("jTextField2");
+        valueSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        valueSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 1.0f, null, 0.01f));
 
-        jSpinner1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        sellButton.setText("Vender");
 
-        jSpinner2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1.0f, 1.0f, null, 0.01f));
+        goToUsersButton.setText("Ir a usuarios");
 
-        jButton1.setText("Reestablecer Valores");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        restoreDataButton.setText("Reestablecer Valores");
+        restoreDataButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                restoreDataButtonActionPerformed(evt);
             }
         });
-
-        jButton2.setText("Vender");
-
-        jButton3.setText("Ir a usuarios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,28 +121,28 @@ public class UserWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(sellButton)
                                 .addGap(23, 23, 23)
-                                .addComponent(jButton3))
+                                .addComponent(goToUsersButton))
                             .addComponent(listScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
+                            .addComponent(brandTextField)
+                            .addComponent(modelTextField)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(horsepowerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner1))
+                                .addComponent(horsepowerSpinner))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                    .addComponent(brandLabel)
+                                    .addComponent(modelLabel))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(valueLabel)
                                 .addGap(34, 34, 34)
-                                .addComponent(jSpinner2))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(valueSpinner))
+                            .addComponent(restoreDataButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -157,27 +153,27 @@ public class UserWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(brandLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(brandTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(modelLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(modelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(horsepowerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(horsepowerSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(valueLabel)
+                            .addComponent(valueSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(listScrollPane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(restoreDataButton)
+                    .addComponent(sellButton)
+                    .addComponent(goToUsersButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -196,14 +192,24 @@ public class UserWindow extends javax.swing.JFrame {
         }
     }
     
+    public void setSelectedVehicle(Vehicle vehicle){
+        
+        brandTextField.setText(vehicle.getBrand());
+        horsepowerSpinner.setValue(vehicle.getHorsepower());
+    }
+    
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         setTitleName(loggedUser.getUserUsername());
         refreshList();
     }//GEN-LAST:event_formComponentShown
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void restoreDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreDataButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_restoreDataButtonActionPerformed
+
+    private void vehicleListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_vehicleListValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vehicleListValueChanged
    
     /**
      * @param args the command line arguments
@@ -242,19 +248,19 @@ public class UserWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel brandLabel;
+    private javax.swing.JTextField brandTextField;
+    private javax.swing.JButton goToUsersButton;
+    private javax.swing.JLabel horsepowerLabel;
+    private javax.swing.JSpinner horsepowerSpinner;
     private javax.swing.JScrollPane listScrollPane;
+    private javax.swing.JLabel modelLabel;
+    private javax.swing.JTextField modelTextField;
+    private javax.swing.JButton restoreDataButton;
+    private javax.swing.JButton sellButton;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel valueLabel;
+    private javax.swing.JSpinner valueSpinner;
     private javax.swing.JList<String> vehicleList;
     // End of variables declaration//GEN-END:variables
 }
