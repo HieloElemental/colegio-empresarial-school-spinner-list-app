@@ -60,7 +60,7 @@ public class Vehicle {
         return value;
     }
     
-    public void setValue(int value){
+    public void setValue(float value){
         this.value = value;
     }
 }

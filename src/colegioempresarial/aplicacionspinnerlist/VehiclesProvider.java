@@ -45,6 +45,19 @@ public class VehiclesProvider {
         }
         return null;
     }
+    
+    public boolean setVehicleById(Vehicle vehicle) {
+        for (Vehicle subVehicle: vehicles){
+            if (subVehicle.getId() == vehicle.getId()){
+                subVehicle.setBrand(vehicle.getBrand());
+                subVehicle.setModel(vehicle.getModel());
+                subVehicle.setHorsepower(vehicle.getHorsepower());
+                subVehicle.setValue(vehicle.getValue());
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void removeVehicleById(int id) {
         Vehicle vehicleToRemove = null;

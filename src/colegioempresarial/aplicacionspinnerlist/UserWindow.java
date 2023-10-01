@@ -61,6 +61,9 @@ public class UserWindow extends javax.swing.JFrame {
         sellButton = new javax.swing.JButton();
         goToUsersButton = new javax.swing.JButton();
         restoreDataButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -99,14 +102,41 @@ public class UserWindow extends javax.swing.JFrame {
         valueSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         valueSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 1.0f, null, 0.01f));
 
+        sellButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         sellButton.setText("Vender");
 
+        goToUsersButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         goToUsersButton.setText("Ir a usuarios");
 
+        restoreDataButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         restoreDataButton.setText("Reestablecer Valores");
         restoreDataButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restoreDataButtonActionPerformed(evt);
+            }
+        });
+
+        addButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        addButton.setText("Nuevo");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        editButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        editButton.setText("Cambiar");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        deleteButton.setText("Eliminar");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -117,14 +147,15 @@ public class UserWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(listScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(sellButton)
                                 .addGap(23, 23, 23)
                                 .addComponent(goToUsersButton))
-                            .addComponent(listScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(brandTextField)
@@ -134,15 +165,19 @@ public class UserWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(horsepowerSpinner))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(valueLabel)
+                                .addGap(34, 34, 34)
+                                .addComponent(valueSpinner))
+                            .addComponent(restoreDataButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(brandLabel)
                                     .addComponent(modelLabel))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(valueLabel)
-                                .addGap(34, 34, 34)
-                                .addComponent(valueSpinner))
-                            .addComponent(restoreDataButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,9 +206,14 @@ public class UserWindow extends javax.swing.JFrame {
                     .addComponent(listScrollPane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(restoreDataButton)
+                    .addComponent(addButton)
+                    .addComponent(editButton)
+                    .addComponent(deleteButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sellButton)
-                    .addComponent(goToUsersButton))
+                    .addComponent(goToUsersButton)
+                    .addComponent(restoreDataButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -184,32 +224,85 @@ public class UserWindow extends javax.swing.JFrame {
         titleLabel.setText("Bienvenido, " + name);
     }
     
-    public void refreshList(){
-        System.out.println("colegioempresarial.aplicacionspinnerlist.UserWindow.refreshList()");
+    public void refreshList(boolean isRemoved){
+        int selectedIndex = vehicleList.getSelectedIndex();
+        vehicleListModel.clear();
         for(Vehicle vehicle: vehiclesProvider.listVehicles()){
             System.out.println(vehicle.getBrand() + " ");
             vehicleListModel.addElement(vehicle.getBrand() + " " + vehicle.getModel());
         }
+        if(isRemoved){
+            vehicleList.setSelectedIndex(--selectedIndex);
+        }else{
+            vehicleList.setSelectedIndex(selectedIndex);
+        }
     }
     
-    public void setSelectedVehicle(Vehicle vehicle){
-        
-        brandTextField.setText(vehicle.getBrand());
-        horsepowerSpinner.setValue(vehicle.getHorsepower());
+    public Vehicle getSelectedVehicle(){
+        int selectedIndex = vehicleList.getSelectedIndex();
+        if(selectedIndex == -1){
+            return null;
+        }
+        return vehiclesProvider.listVehicles().get(selectedIndex);   
+    }
+    
+    public Vehicle getSelectedVehicleNewValues(){
+        return new Vehicle(getSelectedVehicle().getId(), (String) brandTextField.getText(), (String) modelTextField.getText(), (int) horsepowerSpinner.getValue(), (float) valueSpinner.getValue());
+    }
+    
+    public boolean setSelectedVehicle(){
+        boolean hasChanged = vehiclesProvider.setVehicleById(getSelectedVehicleNewValues());
+        refreshList(false);
+        return hasChanged;
+    }
+    
+    public void deleteSelectedVehicle(){
+        vehiclesProvider.removeVehicleById(getSelectedVehicle().getId());
+        refreshList(true);
+    }
+    
+    public void addVehicle(){
+        vehiclesProvider.addVehicle(new Vehicle(0, "New Vehicle", "", 1, 1));
+        refreshList(false);
+    }
+    
+    public void listSetVehicleValues(Vehicle vehicle){
+        if(vehicle != null){
+            brandTextField.setText(vehicle.getBrand());
+            modelTextField.setText(vehicle.getModel());
+            horsepowerSpinner.setValue(vehicle.getHorsepower());
+            valueSpinner.setValue(vehicle.getValue());
+        }
+    }
+    
+    public void resetVehicle(){
+        listSetVehicleValues(getSelectedVehicle());
     }
     
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         setTitleName(loggedUser.getUserUsername());
-        refreshList();
+        refreshList(false);
     }//GEN-LAST:event_formComponentShown
 
     private void restoreDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreDataButtonActionPerformed
-        // TODO add your handling code here:
+        resetVehicle();
     }//GEN-LAST:event_restoreDataButtonActionPerformed
 
     private void vehicleListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_vehicleListValueChanged
-        // TODO add your handling code here:
+        resetVehicle();
     }//GEN-LAST:event_vehicleListValueChanged
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        deleteSelectedVehicle();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        setSelectedVehicle();
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        addVehicle();
+    }//GEN-LAST:event_addButtonActionPerformed
    
     /**
      * @param args the command line arguments
@@ -248,8 +341,11 @@ public class UserWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JLabel brandLabel;
     private javax.swing.JTextField brandTextField;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JButton goToUsersButton;
     private javax.swing.JLabel horsepowerLabel;
     private javax.swing.JSpinner horsepowerSpinner;
