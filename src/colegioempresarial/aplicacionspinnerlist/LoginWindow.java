@@ -23,6 +23,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        JOptionPane.showMessageDialog(rootPane, "Bienvenido!\n\nEste programa aún no contiene la función de usuarios\nUsuario por defecto:\nUser: Administrador \nPassword: 123 \n\nNota: Seleccione la imagen de administrador (Ingresar como administrador) para que se le permita el ingreso, si intenta ingresar como usuario con credenciales de administrador se le negará el ingreso");
     }
     
     public void setVehiclesProvider(VehiclesProvider vehiclesProvider){

@@ -7,7 +7,8 @@ package colegioempresarial.aplicacionspinnerlist;
 
 /**
  *
- * @author Usuario
+ * @author Alejandro Gutierrez Muñoz; Maria Alejandro Escobar Castro
+ * @grade 11C
  */
 public class Vehicle {
     private int id;

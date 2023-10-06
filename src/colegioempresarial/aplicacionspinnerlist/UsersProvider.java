@@ -20,7 +20,7 @@ public class UsersProvider {
         char[] password = {'1', '2', '3'};
         users = new ArrayList<>();
         users.add(new User.Builder()
-                .setUserUsername("HieloElemental")
+                .setUserUsername("Administrador")
                 .setUserPassword(password)
                 .setUserIsAdmin(true)
                 .build());

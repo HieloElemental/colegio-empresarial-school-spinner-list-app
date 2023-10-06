@@ -9,7 +9,8 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Usuario
+ * @author Alejandro Gutierrez Muñoz; Maria Alejandro Escobar Castro
+ * @grade 11C
  */
 public class UserWindow extends javax.swing.JFrame {
     private DefaultListModel<String> vehicleListModel;
@@ -228,7 +229,6 @@ public class UserWindow extends javax.swing.JFrame {
         int selectedIndex = vehicleList.getSelectedIndex();
         vehicleListModel.clear();
         for(Vehicle vehicle: vehiclesProvider.listVehicles()){
-            System.out.println(vehicle.getBrand() + " ");
             vehicleListModel.addElement(vehicle.getBrand() + " " + vehicle.getModel());
         }
         if(isRemoved){
